@@ -2,6 +2,7 @@
 *.log
 *.rbc
 *.swp
+dummy_app/*
 .bundle
 .idea/
 .rvmrc
