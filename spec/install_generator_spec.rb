@@ -1,7 +1,6 @@
 require 'spec_helper'
-require "generator_spec"
+require 'generator_spec'
 require 'generators/ascent/install_generator'
-require 'generators/active_record/ascent/node_generator'
 
 describe Ascent::InstallGenerator, type: :generator do
   destination File.expand_path('../../dummy_app/tmp/generator', __FILE__)
@@ -12,8 +11,8 @@ describe Ascent::InstallGenerator, type: :generator do
   end
 
   it 'mount Ascent as Engine in route file and generats all install files' do
-    expect_any_instance_of(generator_class).to receive(:route).
-      with("mount Ascent::Engine => '/test_admin', as: 'ascent'")
+    expect_any_instance_of(generator_class).to receive(:route)
+      .with("mount Ascent::Engine => '/test_admin', as: 'ascent'")
 
     silence_stream(STDOUT) do
       generator.invoke('install')
@@ -39,7 +38,6 @@ describe Ascent::InstallGenerator, type: :generator do
           end
         end
       end
-    } 
+    }
   end
 end
-

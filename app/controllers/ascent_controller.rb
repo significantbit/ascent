@@ -1,3 +1,2 @@
-class AscentController < Ascent.parent_controller.constantize 
-
+class AscentController < Ascent.parent_controller.constantize
 end

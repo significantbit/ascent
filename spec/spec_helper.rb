@@ -6,7 +6,6 @@ SimpleCov.start do
   minimum_coverage(90)
 end
 
-
 require File.expand_path('../dummy_app/config/environment', __FILE__)
 
 require 'rspec/rails'
@@ -23,9 +22,6 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
-    #Warden.test_reset!
     DatabaseCleaner.clean
   end
 end
-
-

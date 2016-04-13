@@ -8,9 +8,9 @@ describe Ascent::Config do
 
     it 'can be changed' do
       Ascent.config do |config|
-        config.app_name = "Test Changed"
+        config.app_name = 'Test Changed'
       end
-      expect(Ascent.config.app_name).to eq("Test Changed")
+      expect(Ascent.config.app_name).to eq('Test Changed')
     end
   end
 

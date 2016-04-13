@@ -1,15 +1,20 @@
 module Ascent
   module Generators
     module Utils
+      # Help functions for Ascent generators
       module InstanceMethods
         def display(output, color = :green)
           say("           - #{output}", color)
         end
-        def ask_for(wording, default_value = nil, override_if_present = nil)
-          if override_if_present.present?
-            display("Using [#{override_if_present}] for question '#{wording}'") && override_if_present
+
+        def ask_for(text, default_value = nil, override = nil)
+          if override.present?
+            display_text = "Using [#{override}] for question '#{text}'"
+            display(display_text) && override
           else
-            ask("           ?  #{wording} Press <enter> for [#{default_value}] >", :yellow).presence || default_value
+            display_text = "    ?  #{text} Press <enter> for [#{default_value}]"
+            ask(display_text, :yellow).presence ||
+              default_value
           end
         end
       end

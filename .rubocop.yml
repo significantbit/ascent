@@ -1,0 +1,5 @@
+AllCops:
+  Exclude:
+    - 'spec/dummy_app/**/*'
+    - 'dummy_app/**/*'
+    - 'lib/generators/ascent/templates/**/*'
