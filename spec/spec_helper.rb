@@ -10,11 +10,19 @@ require File.expand_path('../dummy_app/config/environment', __FILE__)
 
 require 'rspec/rails'
 require 'factory_girl'
-require 'factories'
 require 'database_cleaner'
+
+
+DatabaseCleaner.strategy = :transaction
+
+ActiveRecord::Base.connection.tables.each do |table|
+  puts 
+end
 
 RSpec.configure do |config|
   config.include RSpec::Matchers
+  config.include FactoryGirl::Syntax::Methods
+  FactoryGirl.find_definitions
 
   config.before do
     DatabaseCleaner.start
