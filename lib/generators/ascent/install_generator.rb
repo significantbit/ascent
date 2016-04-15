@@ -19,7 +19,7 @@ module Ascent
       namespace = ask_for(text, 'admin', _namespace)
       route("mount Ascent::Engine => '/#{namespace}', as: 'ascent'")
       template 'initializer.rb', 'config/initializers/ascent.rb'
-      copy_migration 'ascent_migration'
+      copy_migration 'create_ascent_migration'
     end
 
     private

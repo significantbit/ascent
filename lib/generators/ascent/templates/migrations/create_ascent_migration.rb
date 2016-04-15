@@ -30,6 +30,6 @@ class CreateAscentMigration < ActiveRecord::Migration<%= migration_version %>
     add_index :ascent_node_hierarchies, [:ancestor_id, :descendant_id, :generations], unique: true, name: "node_anc_desc_idx"
     add_index :ascent_node_hierarchies, [:descendant_id], name: "node_desc_idx"
 
-    Ascent::Node.first_or_create(name: 'Root', parent_id: nil, published: true, sort_order: 0)
+    Node.first_or_create(name: 'Root', parent_id: nil, published: true, sort_order: 0)
   end
 end

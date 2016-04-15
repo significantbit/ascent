@@ -31,10 +31,10 @@ describe Ascent::InstallGenerator, type: :generator do
     expect(destination_root).to have_structure {
       directory 'db' do
         directory 'migrate' do
-          file "#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_ascent_migration.rb" do
-            contains 'create_table :node'
-            contains 'create_table :node_hierarchies'
-            contains 'create_table :node_blocks'
+          file "#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_create_ascent_migration.rb" do
+            contains 'create_table :ascent_node'
+            contains 'create_table :ascent_node_hierarchies'
+            contains 'create_table :ascent_node_blocks'
           end
         end
       end

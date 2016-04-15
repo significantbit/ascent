@@ -1,4 +1,4 @@
-class CreateAscentMigration < ActiveRecord::Migration<%= migration_version %>
+class CreateAscentMigration < ActiveRecord::Migration[5.0]
   def change
     create_table :ascent_nodes do |t|
       t.string :name
