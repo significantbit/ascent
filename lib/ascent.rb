@@ -1,5 +1,3 @@
-require 'ascent/config'
-require 'ascent/engine'
 # Ascent
 # A Higly customizable CMS for Programming
 module Ascent
@@ -11,3 +9,5 @@ module Ascent
     end
   end
 end
+require 'ascent/config'
+require 'ascent/engine'

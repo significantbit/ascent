@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0.beta3'
 gem 'sass-rails', '~> 5.0'
+# Temp since closure tree belongs to validation dont work correcly. Should
+# use dependy from gemspec instead.
+gem 'closure_tree', github: 'jayfredlund/closure_tree', ref: '9197ef9'
 
 group :test do
   gem 'sqlite3', '>= 1.3'

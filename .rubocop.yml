@@ -3,3 +3,9 @@ AllCops:
     - 'spec/dummy_app/**/*'
     - 'dummy_app/**/*'
     - 'lib/generators/ascent/templates/**/*'
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 90
+
+

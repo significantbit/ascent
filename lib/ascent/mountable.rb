@@ -1,6 +1,7 @@
 require 'active_support/concern'
-
 module Ascent
+  # Mountable Class for Ascent
+  # Adding this code to your model will make it a Block in ascent
   module Mountable
     extend ActiveSupport::Concern
 

@@ -10,15 +10,15 @@ module Ascent
     after_save :create_url
 
     def create_slug
-      self.slug = self.name.to_s.parameterize
+      self.slug = name.to_s.parameterize
+      save
     end
 
     def create_url
-      self.update_column(:url, '/' + self_and_ancestors.reject { |n| n.root? }.map { |n| n.slug }.reverse.join('/'))
-      self.descendants.each do |d|
-        d.create_url
-      end
-      Ascent::Engine.reload
+      self.url = "/#{self_and_ancestors.reject(&:root?).map(&:slug).reverse.join('/')}"
+      save
+      descendants.each(&:create_url)
+      Ascent::Engine.reload_routes
     end
   end
 end

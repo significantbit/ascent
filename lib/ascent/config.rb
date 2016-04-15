@@ -25,10 +25,10 @@ module Ascent
 
       # Get all Blocks
       def blocks
-        b = ActiveRecord::Base.descendants.select do |c| 
+        b = ActiveRecord::Base.descendants.select do |c|
           c.included_modules.include?(Ascent::Mountable)
         end
-        (b - excluded_blocks).uniq.sort 
+        (b - excluded_blocks).uniq.sort
       end
 
       # Reset all configuration

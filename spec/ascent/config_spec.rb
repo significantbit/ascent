@@ -28,15 +28,18 @@ describe Ascent::Config do
       expect(Ascent.config.parent_controller).to eq('TestController')
     end
   end
-  
+
   # Blocks
   describe '.blocks' do
     before do
-      create(:test_block) # We do this to establish a connection to the TestBlock Model... Must be a better way?
+      # We do this to establish a connection to the TestBlock Model...
+      # First test dont work, second does if not running this code
+      # Must be a better way?
+      build(:test_block)
     end
 
     it 'should include all models that are mountable' do
-      expect(Ascent.config.blocks).to eq([TestBlock])  
+      expect(Ascent.config.blocks).to eq([TestBlock])
     end
 
     it 'should not include models that has been excluded' do
