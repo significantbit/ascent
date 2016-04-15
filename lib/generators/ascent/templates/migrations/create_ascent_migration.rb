@@ -30,6 +30,9 @@ class CreateAscentMigration < ActiveRecord::Migration<%= migration_version %>
     add_index :ascent_node_hierarchies, [:ancestor_id, :descendant_id, :generations], unique: true, name: "node_anc_desc_idx"
     add_index :ascent_node_hierarchies, [:descendant_id], name: "node_desc_idx"
 
-    Node.first_or_create(name: 'Root', parent_id: nil, published: true, sort_order: 0)
+    # We do this for now beacuse of closure_tree validation error in Rails5
+    # Later change to first_or_create
+    root = Ascent::Node.new(name: 'Root', parent_id: nil, published: true, sort_order: 0)
+    root.save(validate: false)
   end
 end
