@@ -1,11 +1,20 @@
 ENV['RAILS_ENV'] = 'test'
 app_path = '../dummy_app'
+require 'simplecov'
+# Simplecov Config
+SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter]
+
+SimpleCov.start do
+  add_group 'Models', 'app/models'
+  add_filter '/spec/'
+  add_filter '/vendor/bundle/'
+  minimum_coverage(91.21)
+end
 
 require File.expand_path("#{app_path}/config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'database_cleaner'
-require 'simplecov'
 
 def silence_stream(stream)
   old_stream = stream.dup
@@ -27,13 +36,6 @@ end
 # Run all migrations
 silence_stream(STDOUT) do
   ActiveRecord::Migrator.migrate File.expand_path("#{app_path}/db/migrate/", __FILE__)
-end
-
-# Simplecov Config
-SimpleCov.start do
-  add_filter '/spec/'
-  add_filter '/vendor/bundle'
-  minimum_coverage(90)
 end
 
 RSpec.configure do |config|

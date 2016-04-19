@@ -10,14 +10,13 @@ module Ascent
     after_save :create_url
 
     def create_slug
-      # self.slug = name.to_s.parameterize
-      # save
+      self.slug = name.to_s.parameterize
     end
 
     def create_url
-      # self.url = "/#{self_and_ancestors.reject(&:root?).map(&:slug).reverse.join('/')}"
-      # save
-      # descendants.each(&:create_url)
+      gurl = "/#{self_and_ancestors.reject(&:root?).map(&:slug).reverse.join('/')}"
+      update_column(:url, gurl)
+      descendants.each(&:create_url)
       Ascent::Engine.reload_routes
     end
   end
