@@ -1,5 +1,4 @@
 # coding: utf-8
-require 'ascent/mountable'
 FactoryGirl.define do
   factory :ascent_node, class: Ascent::Node do
     sequence(:name) { |n| "route#{n}" }

@@ -1,8 +1,9 @@
+require 'ascent'
 module Ascent
   # Ascent Engine
   class Engine < Rails::Engine
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
     isolate_namespace Ascent
-
     def reload_routes
       Rails.application.routes_reloader.reload!
     end
