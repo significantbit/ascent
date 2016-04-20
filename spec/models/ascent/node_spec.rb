@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ascent::Node, type: :model do
+describe Ascent::Node do
   describe '#url' do
     it 'does not generate a url for root node' do
       root = create(:ascent_node)

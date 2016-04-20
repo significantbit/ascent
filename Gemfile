@@ -12,7 +12,9 @@ group :test do
   gem 'factory_girl', '>= 4.2'
   gem 'rubocop', '~> 0.31.0'
   gem 'simplecov', '>= 0.9', require: false
-  gem 'rspec-rails', '>= 2.14'
+  %w(rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support).each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+  end
   gem 'generator_spec', '>= 0.8'
 end
 

@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email       = ['antewall@gmail.com']
   s.homepage    = 'http://rubygems.org/gems/ascent'
 
-  s.files       = Dir['Gemfile', 'lib/**/*', 'app/**/*', 'Rakefile']
+  s.files       = Dir['Gemfile', 'lib/**/*', 'app/**/*', 'config/**/*', 'Rakefile']
   s.license     = 'MIT'
 
   s.require_paths = %w(lib)

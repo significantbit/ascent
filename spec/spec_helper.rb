@@ -3,11 +3,13 @@ app_path = '../dummy_app'
 require 'simplecov'
 # Simplecov Config
 SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter]
-
 SimpleCov.start do
   add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+
   add_filter '/spec/'
   add_filter '/vendor/bundle/'
+
   minimum_coverage(91.21)
 end
 
@@ -29,7 +31,7 @@ end
 # Setup database for test
 DatabaseCleaner.strategy = :transaction
 
-ActiveRecord::Base.connection.tables.each do |table|
+ActiveRecord::Base.connection.data_sources.each do |table|
   ActiveRecord::Base.connection.drop_table(table)
 end
 
@@ -39,6 +41,7 @@ silence_stream(STDOUT) do
 end
 
 RSpec.configure do |config|
+  config.use_transactional_fixtures = true
   config.include RSpec::Matchers
   config.include FactoryGirl::Syntax::Methods
   FactoryGirl.find_definitions
