@@ -23,19 +23,36 @@ module Ascent
       # Excluded blocks
       attr_accessor :excluded_blocks
 
+
+      def lchomp(base, arg)
+        base.to_s.reverse.chomp(arg.to_s.reverse).reverse
+      end
+
       # Get all Blocks
       def blocks
-        b = ActiveRecord::Base.descendants.select do |c|
-          c.included_modules.include?(Ascent::Mountable)
-        end
-        (b - excluded_blocks).uniq.sort
+        (included_blocks - excluded_blocks.map(&:to_s)).uniq.sort!
+      end
+
+      def included_blocks
+        @@system_models ||= # memoization for tests
+          ([Rails.application]).flat_map do |app|
+            (app.paths['app/models'].to_a + app.config.autoload_paths).collect do |load_path|
+              Dir.glob(app.root.join(load_path)).collect do |load_dir|
+                Dir.glob(load_dir + '/**/*.rb').collect do |filename|
+                  if File.read(filename).include?(Ascent::Mountable.to_s) 
+                    lchomp(filename, "#{app.root.join(load_dir)}/").chomp('.rb').camelize
+                  end
+                end
+              end
+            end
+          end.flatten.compact
       end
 
       # Reset all configuration
       def reset
         @app_name = proc do
           chomp_text = ' Application'
-          [Rails.application.engine_name.titleize.chomp(chomp_text), 'Ascent']
+          [Rails.application.engine_name.titleize.chomp(chomp_text), ' Ascent']
         end
         @excluded_blocks = []
         @parent_controller = '::ApplicationController'

@@ -4,7 +4,7 @@ describe Ascent::Config do
   # App name
   describe '.app_name' do
     it 'has a default value' do
-      expect(Ascent.config.app_name.call).to eq(['Dummy App', 'Ascent'])
+      expect(Ascent.config.app_name.call).to eq(['Dummy App', ' Ascent'])
     end
 
     it 'can be changed' do
@@ -39,11 +39,11 @@ describe Ascent::Config do
     end
 
     it 'should include all models that are mountable' do
-      expect(Ascent.config.blocks).to eq([TestBlock])
+      expect(Ascent.config.blocks).to eq([TestBlock.to_s])
     end
 
     it 'should not include models that has been excluded' do
-      Ascent.config.excluded_blocks = [TestBlock]
+      Ascent.config.excluded_blocks = [TestBlock.to_s]
       expect(Ascent.config.blocks).to eq([])
     end
   end
