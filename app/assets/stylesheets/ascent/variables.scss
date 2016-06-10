@@ -1,0 +1,34 @@
+// Ascent Variables
+
+// Responsive sizes
+$mobile: new-breakpoint(max-width 768px);
+
+
+// Fonts
+$main-font: 'Segoe UI';
+
+
+/* Colors */
+$ascent-color: #14B9FC;
+$main-dark: #353E43;
+$ascent-dark: #3F4A4E;
+$main-text: #95989A;
+$light-gray: #CACFD0;
+$light: #FFF;
+$bg-color: $light-gray;
+
+
+/* Admin */
+$header-height: 30px;
+
+/* Left Admin Menu */
+$menu-background: $main-dark;
+$menu-width: 250px;
+$menu-text: $main-text;
+
+$nav-item-padding: 15px 30px;
+$nav-item-background: $ascent-dark;
+
+
+// Admin Content
+$admin-normal-padding: 12px;

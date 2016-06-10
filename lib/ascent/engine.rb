@@ -8,6 +8,13 @@ module Ascent
       Rails.application.routes_reloader.reload!
     end
 
+    initializer 'Ascent precompile hook', group: :all do |app|
+      app.config.assets.precompile += %w(
+        ascent/ascent.css
+        ascent/ascent_128x128.png
+      )
+    end
+
     rake_tasks do
       Dir[File.join(File.dirname(__FILE__), '../tasks/*.rake')].each do |f|
         load f

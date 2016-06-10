@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>dummyapp</title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag "ascent/ascent.css", media: :all %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+  </head>
+
+  <body>
+    <div class="admin">
+      <nav class="ascent-admin-nav">
+        <div class="nav-header">
+          <%= link_to ascent.dashboard_path do %>
+            <p><%= Ascent.config.app_name.call.join %></p>
+            <%= image_tag('ascent/ascent_128x128.png') %>
+          <% end %>
+        </div>
+        <ul class="nav-menu">
+          <li class="active"><a href="#">nodes</a></li>
+          <% Ascent.config.blocks.each do |b| %>
+            <li><a><%= b %></a></li>
+          <% end %>
+        </ul>
+      </nav>
+      <div class="admin-container">
+        <div class="page-header">
+          <h2>nodes</h2>
+        </div>
+        <div class="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
