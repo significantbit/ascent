@@ -15,6 +15,7 @@ group :test do
   %w(rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support).each do |lib|
     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
   end
+  gem 'rails-controller-testing'
   gem 'generator_spec', '>= 0.8'
 end
 

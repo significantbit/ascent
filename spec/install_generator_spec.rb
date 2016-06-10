@@ -12,7 +12,9 @@ describe Ascent::InstallGenerator, type: :generator do
 
   it 'mount Ascent as Engine in route file and generats all install files' do
     expect_any_instance_of(generator_class).to receive(:route)
-      .with("mount Ascent::Engine => '/test_admin', as: 'ascent'")
+      .with("mount Ascent::Admin::Engine => '/test_admin', as: 'ascent_admin'")
+    expect_any_instance_of(generator_class).to receive(:route)
+      .with("mount Ascent::Engine => '/', as: 'ascent'")
 
     silence_stream(STDOUT) do
       generator.invoke('install')

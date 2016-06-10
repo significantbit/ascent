@@ -1,13 +1,15 @@
 require 'closure_tree'
 
 module Ascent
-  class Node < ApplicationRecord
+  class Node < ActiveRecord::Base
     has_closure_tree order: 'sort_order'
 
     has_many :node_blocks, dependent: :destroy
 
     after_validation :create_slug
     after_save :create_url
+
+    scope :published, -> { where(published: true)}
 
     def create_slug
       self.slug = name.to_s.parameterize

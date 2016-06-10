@@ -32,7 +32,7 @@ class CreateAscentMigration < ActiveRecord::Migration[5.0]
 
     # We do this for now beacuse of closure_tree validation error in Rails5
     # Later change to first_or_create
-    root = Ascent::Node.new(name: 'Root', parent_id: nil, published: true, sort_order: 0)
-    root.save(validate: false)
+    #root = Ascent::Node.new(name: 'Root', parent_id: nil, published: true, sort_order: 0)
+    #root.save(validate: false)
   end
 end

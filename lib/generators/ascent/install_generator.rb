@@ -7,17 +7,17 @@ module Ascent
     include Generators::Utils::InstanceMethods
     include Rails::Generators::Migration
 
-    argument :_namespace,
+    argument :_admin_namespace,
              type: :string,
              required: false,
              desc: 'Ascent admin url namespace'
 
     desc 'Ascent installation generator'
-
     def install
       text = 'Where do you want to mount the ascent admin?'
-      namespace = ask_for(text, 'admin', _namespace)
-      route("mount Ascent::Engine => '/#{namespace}', as: 'ascent'")
+      admin_namespace = ask_for(text, 'admin', _admin_namespace)
+      route("mount Ascent::Admin::Engine => '/#{admin_namespace}', as: 'ascent_admin'")
+      route("mount Ascent::Engine => '/', as: 'ascent'")
       template 'initializer.rb', 'config/initializers/ascent.rb'
       copy_migration 'create_ascent_migration'
     end

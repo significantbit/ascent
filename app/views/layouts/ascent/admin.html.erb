@@ -14,16 +14,14 @@
     <div class="admin">
       <nav class="ascent-admin-nav">
         <div class="nav-header">
-          <%= link_to ascent.dashboard_path do %>
+          <%= link_to ascent_admin.dashboard_path do %>
             <p><%= Ascent.config.app_name.call.join %></p>
             <%= image_tag('ascent/ascent_128x128.png') %>
           <% end %>
         </div>
         <ul class="nav-menu">
-          <li class="active"><a href="#">nodes</a></li>
-          <% Ascent.config.blocks.each do |b| %>
-            <li><a><%= b %></a></li>
-          <% end %>
+          <li><%= link_to 'Dashboard', ascent_admin.dashboard_path %></li>
+          <li><%= link_to 'Nodes', ascent_admin.nodes_path %></li>
         </ul>
       </nav>
       <div class="admin-container">
