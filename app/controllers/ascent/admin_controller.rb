@@ -4,8 +4,5 @@ module Ascent
 
     def dashboard
     end
-
-    def nodes
-    end
   end
 end

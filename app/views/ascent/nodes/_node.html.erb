@@ -1,0 +1,8 @@
+<li>
+  <%= link_to node.name, ascent_admin.node_path(node) %>
+  <% if !node.leaf? %>
+    <ul>
+      <%= render node.children %>
+    </ul>
+  <% end %>
+</li>

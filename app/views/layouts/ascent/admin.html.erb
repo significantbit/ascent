@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>dummyapp</title>
+    <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag "ascent/ascent.css", media: :all %>
@@ -26,7 +26,7 @@
       </nav>
       <div class="admin-container">
         <div class="page-header">
-          <h2>nodes</h2>
+          <h2><%= yield(:header_title) %></h2>
         </div>
         <div class="content">
           <%= yield %>

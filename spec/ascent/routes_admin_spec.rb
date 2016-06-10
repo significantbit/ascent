@@ -9,7 +9,7 @@ describe Ascent::Admin::Engine, type: :routing do
     end
 
     it 'GET #nodes' do
-      expect(get: '/nodes').to route_to(controller: 'ascent/admin', action: 'nodes')
+      expect(get: '/nodes').to route_to(controller: 'ascent/admin/nodes', action: 'index')
     end
   end
 end

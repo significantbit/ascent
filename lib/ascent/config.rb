@@ -23,7 +23,6 @@ module Ascent
       # Excluded blocks
       attr_accessor :excluded_blocks
 
-
       def lchomp(base, arg)
         base.to_s.reverse.chomp(arg.to_s.reverse).reverse
       end
@@ -34,12 +33,12 @@ module Ascent
       end
 
       def included_blocks
-        @@system_models ||= # memoization for tests
+        @system_models ||= # memoization for tests
           ([Rails.application]).flat_map do |app|
-            (app.paths['app/models'].to_a + app.config.autoload_paths).collect do |load_path|
+            (app.paths['app/models'].to_a).collect do |load_path|
               Dir.glob(app.root.join(load_path)).collect do |load_dir|
                 Dir.glob(load_dir + '/**/*.rb').collect do |filename|
-                  if File.read(filename).include?(Ascent::Mountable.to_s) 
+                  if File.read(filename).include?(Ascent::Mountable.to_s)
                     lchomp(filename, "#{app.root.join(load_dir)}/").chomp('.rb').camelize
                   end
                 end

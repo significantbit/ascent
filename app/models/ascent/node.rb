@@ -9,7 +9,7 @@ module Ascent
     after_validation :create_slug
     after_save :create_url
 
-    scope :published, -> { where(published: true)}
+    scope :published, -> { where(published: true) }
 
     def create_slug
       self.slug = name.to_s.parameterize

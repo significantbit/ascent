@@ -1,0 +1,8 @@
+<%= content_for :title, "Nodes - Admin" %>
+<%= content_for :header_title, "Nodes" %>
+<div class="admin-well">
+  <p>Nodes<p>
+  <ul class="tree">
+    <%= render @nodes.root %>
+  </ul>
+</div>
