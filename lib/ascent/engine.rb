@@ -1,4 +1,6 @@
 require 'ascent'
+require 'neat'
+	
 module Ascent
   # Ascent Engine
   class Engine < Rails::Engine

@@ -2,7 +2,7 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.add_dependency 'closure_tree', '~> 6.0.0'
-  s.add_dependency 'neat', '~> 1.7.4'
+  s.add_dependency "neat", "~> 1.1"
 
   s.name        = 'ascent'
   s.version     = '0.0.1'
