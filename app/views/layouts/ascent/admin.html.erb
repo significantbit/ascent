@@ -15,8 +15,8 @@
       <nav class="ascent-admin-nav">
         <div class="nav-header">
           <%= link_to ascent_admin.dashboard_path do %>
-            <p><%= Ascent.config.app_name.call.join %></p>
             <%= image_tag('ascent/ascent_128x128.png') %>
+            <p><%= Ascent.config.app_name.call.join %></p>
           <% end %>
         </div>
         <ul class="nav-menu">
@@ -27,6 +27,9 @@
       <div class="admin-container">
         <div class="page-header">
           <h2><%= yield(:header_title) %></h2>
+          <div class="right-content">
+            <%= yield(:header_right) %>
+          </div>
         </div>
         <div class="content">
           <%= yield %>

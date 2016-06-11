@@ -1,0 +1,27 @@
+.admin-container{
+  @include flex(1);
+
+  .page-header{
+    @include display(flex);
+
+    background-color: $light;
+    h2{
+      @include flex(1);
+
+      color: $menu-text;
+      text-transform: uppercase;
+      padding: $header-height;
+      margin: 0;
+    }
+    .right-content {
+      @include flex(0 200px);
+      @include display(flex);
+      @include flex-direction(column);
+      @include justify-content(center);
+
+      .center-button {
+        text-align: center;
+      }
+    }
+  }
+}

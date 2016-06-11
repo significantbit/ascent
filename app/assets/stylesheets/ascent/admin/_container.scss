@@ -1,16 +1,6 @@
 .admin-container{
   flex: 1;
 
-  .page-header{
-    background-color: $light;
-    h2{
-      color: $menu-text;
-      text-transform: uppercase;
-      padding: $header-height;
-      margin: 0;
-    }
-  }
-
   .content {
     padding: $admin-normal-padding;
   }

@@ -1,5 +1,11 @@
 <%= content_for :title, "#{@node.name} - Nodes - Admin" %>
 <%= content_for :header_title, "#{@node.name} - Nodes" %>
+
+<% content_for :header_right do %>
+  <div class="center-button">
+    <%= link_to t('ascent.nodes.create'), ascent_admin.new_node_path, class: 'btn' %>
+  </div>
+<% end %>
 <div class="admin-well">
   <h2><%= @node.name %></h2>
 </div>

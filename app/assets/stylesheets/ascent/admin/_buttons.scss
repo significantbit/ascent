@@ -1,0 +1,4 @@
+.btn {
+  @include button(simple, $ascent-color);
+  color: $light;
+}
