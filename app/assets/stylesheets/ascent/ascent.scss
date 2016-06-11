@@ -1,6 +1,9 @@
+@charset "utf-8";
+
 @import "bourbon";
 @import "neat";
 @import "ascent/variables";
+@import "admin/**/*";
 
 body,html{
   background-color: $bg-color;
@@ -18,154 +21,9 @@ a{
   height: 100%;
 
   @include media($mobile){
-  @include display(block);
-  }
-}
-
-nav.ascent-admin-nav{
-  flex: 0 $menu-width;
-  min-height: 100%;
-  background-color: $menu-background;
-  width: $menu-width;
-  color: $menu-text;
-
-
-  .nav-header{
-    padding: 20px;
-    vertical-align: middle;
-
-    a {
-      display: block;
-    }
-
-    p{
-      display:inline-block;
-      vertical-align: middle;
-    }
-
-    img{
-      vertical-align: middle;
-      display:inline-block;
-      width: 32px;
-      margin: 0 10px;
-    }
-  }
-
-  ul.nav-menu{
-    list-style:none;
-    padding: 0;
-    margin: 0;
-    li{
-      @include transition(all 200ms, ease-in-out);
-      background-color: $nav-item-background;
-      border-bottom: 1px solid $main-dark;
-
-      &.active{
-        border-left: 10px solid $ascent-color;
-      }
-      &:hover{
-        border-left: 10px solid $ascent-color;
-      }
-
-      a{
-        display:block;
-        padding: $nav-item-padding;
-      }
-    }
-  }
-
-  @include media($mobile){
     @include display(block);
-    width: 100%;
-    min-height: auto;
-    .nav-header{
-      padding: 0px 20px;
-    }
-  }
-
-}
-
-.admin-container{
-  flex: 1;
-
-  .page-header{
-    background-color: $light;
-    h2{
-      color: $menu-text;
-      text-transform: uppercase;
-      padding: $header-height;
-      margin: 0;
-    }
-  }
-
-  .content {
-    padding: $admin-normal-padding;
-  }
-
-  .admin-well {
-    background-color: $light;
-    padding: $admin-normal-padding;
-  }
-
-  @include media($mobile){
-    flex: none;
-    display: block;
-    .page-header h2{
-      padding: 20px;
-    }
   }
 }
 
-// Tree
-.tree,
-.tree ul {
-  margin:0 0 0 1em; /* indentation */
-  padding:0;
-  list-style:none;
-  position:relative;
-  
-  a {
-    color: $link-color;
-  }
-}
 
-.tree ul {margin-left:.5em} /* (indentation/2) */
 
-.tree:before,
-.tree ul:before {
-  content:"";
-  display:block;
-  width:0;
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  border-left:1px solid;
-}
-
-.tree li {
-  margin:0;
-  padding:0 1.5em; /* indentation + .5em */
-  line-height:2em; /* default list item's `line-height` */
-  font-weight:bold;
-  position:relative;
-}
-
-.tree li:before {
-  content:"";
-  display:block;
-  width:10px; /* same with indentation */
-  height:0;
-  border-top:1px solid;
-  margin-top:-1px; /* border top width */
-  position:absolute;
-  top:1em; /* (line-height/2) */
-  left:0;
-}
-
-.tree li:last-child:before {
-  background:white; /* same with body background */
-  height:auto;
-  top:1em; /* (line-height/2) */
-  bottom:0;
-}
