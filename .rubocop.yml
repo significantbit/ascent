@@ -8,4 +8,9 @@ Documentation:
 Metrics/LineLength:
   Max: 90
 
+Metrics/AbcSize:
+  Max: 23.5 # TODO Loweer to 15
 
+Metrics/MethodLength:
+  CountComments: false
+  Max: 29 # TODO: Lower to 15
