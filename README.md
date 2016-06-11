@@ -1,4 +1,10 @@
-# Ascent
+[logo]: https://github.com/significantbit/ascent/blob/master/app/assets/images/ascent/ascent_128x128.png
+
+# Ascent 
+![Ascent Logo][logo]
+
+[![Build Status](https://travis-ci.org/significantbit/ascent.svg?branch=master)](https://travis-ci.org/significantbit/ascent)
+
 Ascent is a highly customizable CMS created by and for developers.
 
 ## What is Ascent and why is it better then other CMS?
@@ -19,6 +25,9 @@ Then run the installer, you will be prompted to select the namespace for the adm
 ```ruby
 rails g ascent:install
 ```
+After that run the migration that was created for the ascent models
+        
+    rails db:migrate
 
 ##### NOTE!!! Closure_tree not updated!
 As of now (2016-06-10) closure_tree can not create a root object. This is due to a change in Rails 5. 
@@ -38,7 +47,11 @@ To install the gem while developing run the following rake command (Sometimes yo
 
     rake install
     
-    
+#### My test are saying ascent_nodes don't exists in the database?
+You may need to run the following command:
+
+    cd spec/dummy_app
+    rake db:migrate && rake db:test:prepare RAILS_ENV=test
 ## TODO
 - Fill in this README more
 - Check Issues for more info
