@@ -3,7 +3,7 @@
 
 <% content_for :header_right do %>
   <div class="center-button">
-    <%= link_to t('ascent.nodes.create'), ascent_admin.new_node_path, class: 'btn' %>
+    <%= link_to t('ascent.admin.node.edit'), ascent_admin.edit_node_path(@node), class: 'btn btn-edit' %>
   </div>
 <% end %>
 <div class="admin-well">
