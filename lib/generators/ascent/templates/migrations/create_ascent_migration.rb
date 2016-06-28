@@ -19,7 +19,7 @@ class CreateAscentMigration < ActiveRecord::Migration<%= migration_version %>
     end
 
     create_table :ascent_node_blocks do |t|
-      t.belongs_to  :node, foreign_key: true
+      t.belongs_to  :ascent_node, foreign_key: true
       t.integer     :mountable_id
       t.string      :mountable_type
       t.integer     :sort_order
