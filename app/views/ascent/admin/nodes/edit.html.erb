@@ -9,7 +9,7 @@
 <div class="admin-well">
   <h2><%= @object.name %></h2>
 
-  <%= ascent_form_for @object, url: ascent_admin.node_path(@object), html: { method: "put", multipart: true, class: "form-horizontal denser" } do |form| %>
+  <%= ascent_form_for @object, url: ascent_admin.node_path(@object), html: { method: "put", multipart: true } do |form| %>
     <%= form.generate :update %>
   <% end %>
 </div>

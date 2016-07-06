@@ -1,4 +1,12 @@
 en:
   ascent:
     admin:
+      node:
+        new: New node
+        create: 
+          error: Error creating node
+          success: Created new node successfully
+        update: 
+          error: Error updating node
+          success: Updated node successfully
 

@@ -15,7 +15,7 @@ module Ascent
         contents << (@template.content_tag :label do
           sub_con = []
           sub_con << i18n_key(@object,fieldset)
-          sub_con << field_for(fieldset)
+          sub_con << input_field(fieldset)
           sub_con.join.html_safe
         end)
         contents.join.html_safe
@@ -24,17 +24,15 @@ module Ascent
 
     private
 
-    def field_for(field)
+    def input_field(field)
       if @object.class.reflect_on_association(field.remove('_id'))
-        #TODO Associsation render
-        return @template.content_tag(:div)
+        return (@template.render get_partial('association'), form: self, object: @object, field: field, collection: @object.class.all)
       else
         return (@template.render get_partial(@object.type_for_attribute(field).type), form: self, field: field)
       end
     end
 
     def i18n_key(obj, key)
-      puts key
       translate("activerecord.attributes.#{obj.model_name.i18n_key.to_s.gsub('/','.')}.#{key}")
     end
 

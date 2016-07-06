@@ -2,6 +2,11 @@
 FactoryGirl.define do
   factory :ascent_node, class: Ascent::Node do
     sequence(:name) { |n| "route#{n}" }
+
+    trait :root do
+      # Fix due to closure_tree bug
+      to_create {|instance| instance.save(validate: false) }
+    end
   end
   factory :test_block do
     sequence(:title) { |n| "Title #{n}" }
