@@ -4,6 +4,7 @@
 <% content_for :header_right do %>
   <div class="center-button">
     <%= link_to t('ascent.admin.node.edit'), ascent_admin.edit_node_path(@object), class: 'btn btn-edit' %>
+    <%= link_to(t('ascent.admin.node.destroy'), ascent_admin.node_path(@object), method: :delete, class: 'btn btn-danger') %>
   </div>
 <% end %>
 <div class="admin-well">

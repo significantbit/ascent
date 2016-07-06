@@ -37,6 +37,13 @@ module Ascent
       end
 
       def destroy
+        if @object.destroy
+          flash[:alert] = I18n.t("ascent.admin.node.destroy.error")
+          redirect_to ascent_admin.nodes_path
+        else
+          flash[:alert] = I18n.t("ascent.admin.node.destroy.success")
+          redirect_to ascent_admin.nodes_path
+        end
       end
 
       private
