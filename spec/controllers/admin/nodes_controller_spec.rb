@@ -10,7 +10,14 @@ describe Ascent::Admin::NodesController, type: :controller do
   it 'GET #show' do
     root = create :ascent_node
     get :show, params: { id: root.id }
-    expect(assigns(:node)).to eq(root)
+    expect(assigns(:object)).to eq(root)
     expect(response).to render_template(:show)
+  end
+
+  it 'GET #edit' do
+    root = create :ascent_node
+    get :edit, params: { id: root.id }
+    expect(assigns(:object)).to eq(root)
+    expect(response).to render_template(:edit)
   end
 end

@@ -1,11 +1,11 @@
-<%= content_for :title, "#{@node.name} - Nodes - Admin" %>
-<%= content_for :header_title, "#{@node.name} - Nodes" %>
+<%= content_for :title, "#{@object.name} - Nodes - Admin" %>
+<%= content_for :header_title, "#{@object.name} - Nodes" %>
 
 <% content_for :header_right do %>
   <div class="center-button">
-    <%= link_to t('ascent.admin.node.edit'), ascent_admin.edit_node_path(@node), class: 'btn btn-edit' %>
+    <%= link_to t('ascent.admin.node.edit'), ascent_admin.edit_node_path(@object), class: 'btn btn-edit' %>
   </div>
 <% end %>
 <div class="admin-well">
-  <h2><%= @node.name %></h2>
+  <h2><%= @object.name %></h2>
 </div>
