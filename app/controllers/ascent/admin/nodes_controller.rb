@@ -16,7 +16,7 @@ module Ascent
       def create
         @object = Ascent::Node.create resource_params
         if @object.save
-          redirect_to ascent_admin.nodes_path, success: t('ascent.node.create.success')
+          redirect_to ascent_admin.node_path(@object), success: t('ascent.node.create.success')
         else
           flash[:alert] = I18n.t("ascent.node.create.error")
           render :new
@@ -28,7 +28,7 @@ module Ascent
 
       def update
         if @object.update resource_params
-          redirect_to ascent_admin.nodes_path, success: t('ascent.node.create.success')
+          redirect_to ascent_admin.node_path(@object), success: t('ascent.node.create.success')
         else
           flash[:alert] = I18n.t("ascent.node.create.error")
           render :new

@@ -1,5 +1,7 @@
 module Ascent
   class FormBuilder < ::ActionView::Helpers::FormBuilder
+    include ActionView::Helpers::TranslationHelper
+
     def generate(options = {})
       visable_inputs.collect do |fieldset|
         fieldset_for fieldset
@@ -8,15 +10,34 @@ module Ascent
     end
 
     def fieldset_for(fieldset)
-      if @object.class.reflect_on_association(fieldset.remove('_id'))
-        #TODO Associsation render
-      else
-        puts fieldset
-        @template.render get_partial(@object.type_for_attribute(fieldset).type), form: self, field: fieldset
+      @template.content_tag :fieldset do
+        contents = []
+        contents << (@template.content_tag :label do
+          sub_con = []
+          sub_con << i18n_key(@object,fieldset)
+          sub_con << field_for(fieldset)
+          sub_con.join.html_safe
+        end)
+        contents.join.html_safe
       end
     end
 
     private
+
+    def field_for(field)
+      if @object.class.reflect_on_association(field.remove('_id'))
+        #TODO Associsation render
+        return @template.content_tag(:div)
+      else
+        return (@template.render get_partial(@object.type_for_attribute(field).type), form: self, field: field)
+      end
+    end
+
+    def i18n_key(obj, key)
+      puts key
+      translate("activerecord.attributes.#{obj.model_name.i18n_key.to_s.gsub('/','.')}.#{key}")
+    end
+
 
     def get_partial(type)
       "ascent/helpers/#{type}"

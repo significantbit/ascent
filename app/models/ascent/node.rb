@@ -22,6 +22,7 @@ module Ascent
       update_column(:url, gurl)
       descendants.each(&:create_url)
       Ascent::Engine.reload_routes
+      gurl
     end
   end
 end
