@@ -9,4 +9,7 @@ en:
         update: 
           error: Error updating node
           success: Updated node successfully
+        destroy: 
+          error: Error deleting node
+          success: Deleted node successfully
 

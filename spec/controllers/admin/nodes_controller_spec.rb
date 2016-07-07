@@ -21,11 +21,75 @@ describe Ascent::Admin::NodesController, type: :controller do
     expect(response).to render_template(:edit)
   end
 
-  it 'DELETE #destory' do
-    root = create :ascent_node, :root
-    delete :destroy, params: { id: root.id }
-    expect(assigns(:object)).to eq(root)
-    #TODO fix url here...
-    expect(response).to redirect_to('/admin/nodes')
+  describe 'DELETE #destory' do
+    it 'assigns the requested node to @object' do
+      root = create :ascent_node, :root
+      delete :destroy, params: { id: root.id }
+      expect(assigns(:object)).to eq(root)
+    end
+
+    it 'redirects to node index url when it can delete' do
+      root = create :ascent_node, :root
+      node = create :ascent_node, parent: root
+      delete :destroy, params: { id: node.id }
+      expect(assigns(:object).destroyed?).to be true
+      expect(response).to redirect_to('/admin/nodes')
+      expect(flash[:alert]).to include('Deleted node')
+    end
+
+    it 'it shows flash message when it can\'t delete' do
+      Ascent::Node.any_instance.should_receive(:destroy).and_return(false)
+      root = create :ascent_node, :root
+      delete :destroy, params: { id: root.id }
+      expect(flash[:alert]).to include('Error deleting')
+    end
+  end
+
+  describe 'POST #update' do
+    it 'assigns the requested node to @object' do
+      root = create :ascent_node, :root
+      post :update, params: { id: root.id }
+      expect(assigns(:object)).to eq(root)
+    end
+
+    it 'redirects to node url when it can update' do
+      root = create :ascent_node, :root
+      node = create :ascent_node, parent: root
+      post :update, params: { id: node.id }
+      expect(response).to redirect_to("/admin/nodes/#{node.id}")
+    end
+
+    it 'render #edit when it can\'t update' do
+      # We can't update a root due to validation
+      root = create :ascent_node, :root
+      post :update, params: { id: root.id }
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe 'GET #new' do
+    it 'assigns a new node to @object' do
+      get :new 
+      expect(assigns(:object)).to be_a Ascent::Node
+    end
+
+    it 'render template :new' do
+      get :new
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'POST #create' do
+    it 'redirects to node url when it can create' do
+      root = create :ascent_node, :root
+      post :create, node: attributes_for(:ascent_node, parent_id: root.id)
+      expect(response).to redirect_to("/admin/nodes/#{assigns(:object).id}")
+    end
+
+    it 'render #edit when it can\'t create' do
+      # We can't create a new root due to validation
+      post :create, node: attributes_for(:ascent_node, :root)
+      expect(response).to render_template :new
+    end
   end
 end
