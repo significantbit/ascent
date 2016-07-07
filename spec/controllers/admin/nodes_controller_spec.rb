@@ -69,7 +69,7 @@ describe Ascent::Admin::NodesController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new node to @object' do
-      get :new 
+      get :new
       expect(assigns(:object)).to be_a Ascent::Node
     end
 

@@ -10,13 +10,16 @@ describe 'Ascent::FormBuilder', type: :helper do
 
     it 'does generate all fields for a model' do
       build_form
-      expect(@builder.generate).to include('<button class="submit btn btn-success" type="submit" name="_save">')
+      test_str = 'button class="submit btn btn-success" type="submit"'
+      expect(@builder.generate).to include(test_str)
     end
 
     it 'does not include excluded fields' do
-      class Ascent::Node
-        def excluded_fields
-          [:slug]
+      module Ascent
+        class Node
+          def excluded_fields
+            [:slug]
+          end
         end
       end
       build_form
@@ -24,8 +27,10 @@ describe 'Ascent::FormBuilder', type: :helper do
     end
 
     after(:each) do
-      class Ascent::Node
-        undef_method :excluded_fields if respond_to? :excluded_fields
+      module Ascent
+        class Node
+          undef_method :excluded_fields if respond_to? :excluded_fields
+        end
       end
     end
   end

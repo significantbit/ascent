@@ -5,6 +5,6 @@
   <h2><%= t('ascent.admin.node.new') %></h2>
 
   <%= ascent_form_for @object, url: ascent_admin.nodes_path, html: { method: "post", multipart: true } do |form| %>
-    <%= form.generate :create %>
+    <%= form.generate %>
   <% end %>
 </div>

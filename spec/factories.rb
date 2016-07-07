@@ -5,7 +5,7 @@ FactoryGirl.define do
 
     trait :root do
       # Fix due to closure_tree bug
-      to_create {|instance| instance.save(validate: false) }
+      to_create { |instance| instance.save(validate: false) }
     end
   end
   factory :test_block do
