@@ -1,5 +1,5 @@
 require 'ascent'
-require 'neat'
+require 'sigbit_admin_rails'
 
 module Ascent
   # Ascent Engine

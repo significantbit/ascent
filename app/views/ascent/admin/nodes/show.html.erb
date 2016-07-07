@@ -1,9 +1,11 @@
 <%= content_for :title, "#{@object.name} - Nodes - Admin" %>
-<%= content_for :header_title, "#{@object.name} - Nodes" %>
-
-<% content_for :header_right do %>
+<%= content_for :header_title, "#{@object.name}" %>
+<% content_for :breadcrumbs do %>
+  <%= breadcrumbs(@object, 'node_path', Ascent::Admin::Engine) %>
+<% end %>
+<% content_for :header_buttons do %>
   <div class="center-button">
-    <%= link_to t('ascent.admin.node.edit'), ascent_admin.edit_node_path(@object), class: 'btn btn-edit' %>
+    <%= link_to t('ascent.admin.node.edit'), ascent_admin.edit_node_path(@object), class: 'btn btn-primary-outline' %>
     <%= link_to(t('ascent.admin.node.destroy.delete'), ascent_admin.node_path(@object), method: :delete, class: 'btn btn-danger') %>
   </div>
 <% end %>

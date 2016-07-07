@@ -1,5 +1,5 @@
 require 'ascent'
-require 'neat'
+require 'sigbit_admin_rails'
 
 module Ascent
   module Admin
@@ -7,6 +7,7 @@ module Ascent
       config.autoload_paths += Dir["#{config.root}/lib/**/"]
       isolate_namespace Ascent
 
+      ActionView::Base.send :include, Ascent::ApplicationHelper
       ActionView::Base.send :include, Ascent::MainHelper
 
       rake_tasks do

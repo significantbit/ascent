@@ -1,29 +1,16 @@
 @charset "utf-8";
-
-@import "bourbon";
-@import "neat";
+/*
+ *= require sigbit-admin
+ */
 @import "ascent/variables";
 @import "admin/**/*";
 
 body,html{
-  background-color: $bg-color;
   font-family: $main-font;
-  height:100%;
-  padding: 0;
-  margin: 0;
-}
-a{
-  text-decoration:none;
-  color: $main-text;
-}
-.admin{
-  @include display(flex);
-  height: 100%;
-
-  @include media($mobile){
-    @include display(block);
-  }
 }
 
-
+.sidebar-brand {
+  background: #2b2d2f image-url("ascent/ascent_128x128.png") no-repeat 1.5rem center;
+  background-size: contain;
+}
 

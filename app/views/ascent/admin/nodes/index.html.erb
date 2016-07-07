@@ -1,14 +1,16 @@
 <%= content_for :title, "Nodes - Admin" %>
 <%= content_for :header_title, "Nodes" %>
 
-<% content_for :header_right do %>
-  <div class="center-button">
-    <%= link_to t('ascent.admin.nodes.create'), ascent_admin.new_node_path, class: 'btn' %>
-  </div>
+<% content_for :header_buttons do %>
+  <%= link_to t('ascent.admin.nodes.create'), ascent_admin.new_node_path, class: 'btn btn-primary' %>
 <% end %>
 <div class="admin-well">
-  <p>Nodes<p>
-  <ul class="tree">
-    <%= render @nodes.root %>
-  </ul>
+  <div class="card">
+    <div class="card-block">
+      <p>Nodes<p>
+      <ul class="tree">
+        <%= render @nodes.root %>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -17,9 +17,10 @@ module Ascent
         @object = Ascent::Node.new
         @object = Ascent::Node.create resource_params
         if @object.save
-          redirect_to ascent_admin.node_path(@object), success: t('ascent.node.create.success')
+          msg = t('ascent.node.create.success')
+          redirect_to ascent_admin.node_path(@object), flash: { success: msg }
         else
-          flash[:alert] = I18n.t('ascent.admin.node.create.error')
+          flash[:danger] = I18n.t('ascent.admin.node.create.error')
           render :new
         end
       end
@@ -29,19 +30,20 @@ module Ascent
 
       def update
         if @object.update resource_params
-          redirect_to ascent_admin.node_path(@object), success: t('ascent.node.update.success')
+          msg = t('ascent.node.update.success')
+          redirect_to ascent_admin.node_path(@object), flash: { success: msg }
         else
-          flash[:alert] = I18n.t('ascent.admin.node.update.error')
+          flash[:danger] = I18n.t('ascent.admin.node.update.error')
           render :edit
         end
       end
 
       def destroy
         if @object.destroy
-          flash[:alert] = I18n.t('ascent.admin.node.destroy.success')
+          flash[:success] = I18n.t('ascent.admin.node.destroy.success')
           redirect_to ascent_admin.nodes_path
         else
-          flash[:alert] = I18n.t('ascent.admin.node.destroy.error')
+          flash[:danger] = I18n.t('ascent.admin.node.destroy.error')
           redirect_to ascent_admin.nodes_path
         end
       end

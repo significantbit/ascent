@@ -11,30 +11,59 @@
   </head>
 
   <body>
-    <div class="admin">
-      <nav class="ascent-admin-nav">
-        <div class="nav-header">
-          <%= link_to ascent_admin.dashboard_path do %>
-            <%= image_tag('ascent/ascent_128x128.png') %>
-            <p><%= Ascent.config.app_name.call.join %></p>
-          <% end %>
-        </div>
-        <ul class="nav-menu">
-          <li><%= link_to 'Dashboard', ascent_admin.dashboard_path %></li>
-          <li><%= link_to 'Nodes', ascent_admin.nodes_path %></li>
-        </ul>
-      </nav>
-      <div class="admin-container">
-        <div class="page-header">
-          <h2><%= yield(:header_title) %></h2>
-          <div class="right-content">
-            <%= yield(:header_right) %>
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <%= sidebar brand_url: root_path do %>
+        <%= sidebar_item 'Dashboard', ascent_admin.dashboard_path %>
+        <%= sidebar_item 'Nodes', ascent_admin.nodes_path %>
+      <% end %>
+
+
+      <div id="page-content-wrapper">
+
+        <nav class="navbar navbar-full" id="header-navbar">
+
+          <button id="sidebar-toggle" class="pull-xs-left navbar-toggler" type="button">
+            <i class="fa fa-bars"></i>
+          </button>
+          <a class="navbar-brand" href="#">Significant Bit</a>
+          <button class="navbar-toggler hidden-md-up pull-xs-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar">
+            <i class="fa fa-ellipsis-v"></i>
+          </button>
+
+          <div class="collapse navbar-toggleable-sm" id="CollapsingNavbar">
+            <ul class="nav navbar-nav pull-xs-right">
+              <li class="nav-item">
+                <a class="nav-link" href="#">TEMP: info@significantbit.se</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">TEMP: Logga ut</a>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="content">
+        </nav>
+
+        <!-- /#header-navbar -->
+        <div class="container-fluid">
+          <div class="row page-header">
+            <%= render 'ascent/partials/flash' %>
+
+            <div class="col-md-12">
+              <h1><%= yield :header_title %></h1>
+              <ol class="breadcrumb">
+                <%= yield :breadcrumbs %>
+              </ol>
+              <div class="page-header-actions btn-toolbar hidden-xs-down">
+                <div class="btn-group" role="group" aria-label="First group">
+                  <%= yield :header_buttons %>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <%= yield %>
         </div>
       </div>
     </div>
-  </body>
 </html>
