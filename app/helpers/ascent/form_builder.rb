@@ -41,13 +41,13 @@ module Ascent
       "ascent/helpers/#{type}"
     end
 
-    def hidden_attribues
-      #TODO
-      ['id', 'created_at', 'updated_at']
+    def hidden_attributes
+      excluded = @object.try(:excluded_fields) || []
+      excluded.concat(['id', 'created_at', 'updated_at']).uniq.map(&:to_s)
     end
 
     def visable_inputs
-      (@object.attribute_names - hidden_attribues)
+      (@object.attribute_names - hidden_attributes)
     end
   end
 end
