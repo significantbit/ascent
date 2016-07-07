@@ -23,6 +23,10 @@ module Ascent
       # Excluded blocks
       attr_accessor :excluded_blocks
 
+      attr_accessor :configured_models
+
+      attr_accessor :default_excluded_fields
+
       def lchomp(base, arg)
         base.to_s.reverse.chomp(arg.to_s.reverse).reverse
       end
@@ -30,6 +34,19 @@ module Ascent
       # Get all Blocks
       def blocks
         (included_blocks - excluded_blocks.map(&:to_s)).uniq.sort!
+      end
+
+      def model(entity, &block)
+        key = begin
+                if entity.is_a?(Class)
+                  entity.name.to_sym
+                end
+              end
+        if block
+          @configured_models[key] = Ascent::Config::Model.new(entity, &block)
+        else
+          @configured_models[key] ||= Ascent::Config::Model.new(entity)
+        end
       end
 
       def included_blocks
@@ -55,6 +72,8 @@ module Ascent
         end
         @excluded_blocks = []
         @parent_controller = '::ApplicationController'
+        @default_excluded_fields = [:id, :updated_at, :created_at]
+        @configured_models = {}
       end
     end
     reset

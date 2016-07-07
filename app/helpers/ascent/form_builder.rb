@@ -47,8 +47,8 @@ module Ascent
     end
 
     def hidden_attributes
-      excluded = @object.try(:excluded_fields) || []
-      excluded.concat(%w(id created_at updated_at)).uniq.map(&:to_s)
+      model_config = Ascent.config(@object.class)
+      model_config.excluded
     end
 
     def visable_inputs
