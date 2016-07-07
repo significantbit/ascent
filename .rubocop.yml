@@ -6,7 +6,7 @@ AllCops:
 Documentation:
   Enabled: false
 Metrics/LineLength:
-  Max: 90
+  Max: 95
 
 Metrics/AbcSize:
   Max: 23.5 # TODO Loweer to 15

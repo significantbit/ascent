@@ -6,6 +6,8 @@ module Ascent
 
     has_many :node_blocks, dependent: :destroy
 
+    belongs_to :parent, class_name: 'Ascent::Node'
+
     after_validation :create_slug
     after_save :create_url
 
@@ -20,6 +22,7 @@ module Ascent
       update_column(:url, gurl)
       descendants.each(&:create_url)
       Ascent::Engine.reload_routes
+      gurl
     end
   end
 end

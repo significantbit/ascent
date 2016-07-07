@@ -5,4 +5,10 @@
   &.btn-edit {
     @include button(simple, $danger-color);
   }
+
+  &.btn-success {
+    @include button(simple, $success-color);
+    font-weight: normal;
+    color: $light;
+  }
 }
