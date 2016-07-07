@@ -37,11 +37,7 @@ module Ascent
       end
 
       def model(entity, &block)
-        key = begin
-                if entity.is_a?(Class)
-                  entity.name.to_sym
-                end
-              end
+        key = entity.name.to_sym
         if block
           @configured_models[key] = Ascent::Config::Model.new(entity, &block)
         else

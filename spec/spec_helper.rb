@@ -17,6 +17,7 @@ require File.expand_path("#{app_path}/config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'database_cleaner'
+require 'capybara'
 
 def silence_stream(stream)
   old_stream = stream.dup
@@ -41,6 +42,7 @@ silence_stream(STDOUT) do
 end
 
 RSpec.configure do |config|
+  config.include Capybara::RSpecMatchers, :type => :helper
   config.use_transactional_fixtures = true
   config.include RSpec::Matchers
   config.include FactoryGirl::Syntax::Methods

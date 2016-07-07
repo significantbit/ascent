@@ -5,15 +5,12 @@ module Ascent
         @entity = entity
         @block = block
         @excluded_fields = []
-        instance_eval &@block if @block
+        instance_eval(&@block) if @block
       end
 
-      def exclude(fields)
-        if fields.kind_of?(Array)
-          @excluded_fields = @excluded_fields.concat(fields).uniq
-        else
-          @excluded_fields.push(fields) unless @excluded_fields.include?(fields)
-        end
+      def exclude(*args)
+        fields = args.to_a
+        @excluded_fields = @excluded_fields.concat(fields).uniq
       end
 
       def excluded

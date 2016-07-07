@@ -1,7 +1,7 @@
 module Ascent
   module Admin
     class NodesController < Ascent::AdminController
-      before_filter :node, only: [:show, :edit, :update, :destroy]
+      before_action :node, only: [:show, :edit, :update, :destroy]
       def index
         @nodes = Ascent::Node.root.self_and_descendants
       end

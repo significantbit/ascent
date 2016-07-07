@@ -11,6 +11,8 @@ module Ascent
     after_validation :create_slug
     after_save :create_url
 
+    validates :name, presence: true
+
     scope :published, -> { where(published: true) }
 
     def create_slug

@@ -17,6 +17,7 @@ group :test do
   end
   gem 'rails-controller-testing'
   gem 'generator_spec', '>= 0.8'
+  gem 'capybara'
 end
 
 gemspec
