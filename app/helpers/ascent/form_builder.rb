@@ -10,14 +10,14 @@ module Ascent
     end
 
     def fieldset_for(fieldset)
-      @template.content_tag :fieldset do
+      @template.content_tag :fieldset, class: 'form-group' do
         contents = []
         contents << (@template.content_tag :label do
           sub_con = []
           sub_con << i18n_key(@object, fieldset)
-          sub_con << input_field(fieldset)
           sub_con.join.html_safe
         end)
+        contents << input_field(fieldset)
         contents.join.html_safe
       end
     end

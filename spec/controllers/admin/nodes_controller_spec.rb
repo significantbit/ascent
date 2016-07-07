@@ -34,14 +34,14 @@ describe Ascent::Admin::NodesController, type: :controller do
       delete :destroy, params: { id: node.id }
       expect(assigns(:object).destroyed?).to be true
       expect(response).to redirect_to('/admin/nodes')
-      expect(flash[:alert]).to include('Deleted node')
+      expect(flash[:success]).to include('Deleted node')
     end
 
     it 'it shows flash message when it can\'t delete' do
-      Ascent::Node.any_instance.should_receive(:destroy).and_return(false)
+      allow_any_instance_of(Ascent::Node).to receive(:destroy).and_return(false)
       root = create :ascent_node, :root
       delete :destroy, params: { id: root.id }
-      expect(flash[:alert]).to include('Error deleting')
+      expect(flash[:danger]).to include('Error deleting')
     end
   end
 

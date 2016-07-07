@@ -24,5 +24,9 @@ module Ascent
       Ascent::Engine.reload_routes
       gurl
     end
+
+    def excluded_fields
+      [:slug, :url, :sort_order]
+    end
   end
 end
