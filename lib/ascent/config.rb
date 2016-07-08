@@ -13,6 +13,8 @@ module Ascent
   #     config.app_name = "Cooler name"
   #   end
   module Config
+    DEFAULT_AUTHENTIONCATION = proc {}
+    DEFAULT_CURRENT_USER = proc {}
     class << self
       # Application title
       attr_accessor :app_name
@@ -27,8 +29,14 @@ module Ascent
 
       attr_accessor :default_excluded_fields
 
-      def lchomp(base, arg)
-        base.to_s.reverse.chomp(arg.to_s.reverse).reverse
+      def authenticate_with(&block)
+        @authenticate = block if block
+        @authenticate || DEFAULT_AUTHENTIONCATION
+      end
+
+      def current_user_method(&block)
+        @current_user = block if block
+        @current_user || DEFAULT_CURRENT_USER
       end
 
       # Get all Blocks
@@ -71,6 +79,12 @@ module Ascent
         @default_excluded_fields = [:id, :updated_at, :created_at]
         @configured_models = {}
       end
+    end
+
+    private 
+
+    def lchomp(base, arg)
+      base.to_s.reverse.chomp(arg.to_s.reverse).reverse
     end
     reset
   end
