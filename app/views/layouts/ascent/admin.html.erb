@@ -34,12 +34,16 @@
 
           <div class="collapse navbar-toggleable-sm" id="CollapsingNavbar">
             <ul class="nav navbar-nav pull-xs-right">
-              <li class="nav-item">
-                <a class="nav-link" href="#">TEMP: info@significantbit.se</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">TEMP: Logga ut</a>
-              </li>
+              <% if _current_user %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><%= _current_user.email %></a>
+                </li>
+              <% end %>
+              <% if logout_path.present? %>
+                <li class="nav-item">
+                  <%= link_to t('ascent.admin.navbar.sign_out'), logout_path, method: logout_method, class: 'nav-link' %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </nav>
