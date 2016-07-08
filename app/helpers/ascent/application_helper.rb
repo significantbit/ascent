@@ -3,7 +3,7 @@ module Ascent
     def breadcrumbs(node, path = nil, engine = Rails.application)
       list = ''
       node.self_and_ancestors.reverse_each do |n|
-        unless path.nil?
+        if !path.nil?
           url = engine.routes.url_helpers.send(path, n)
           list << "<li>#{link_to(n.name, url)}</li>"
         else

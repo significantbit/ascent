@@ -42,7 +42,7 @@ silence_stream(STDOUT) do
 end
 
 RSpec.configure do |config|
-  config.include Capybara::RSpecMatchers, :type => :helper
+  config.include Capybara::RSpecMatchers, type: :helper
   config.use_transactional_fixtures = true
   config.include RSpec::Matchers
   config.include FactoryGirl::Syntax::Methods

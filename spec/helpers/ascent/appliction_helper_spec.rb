@@ -16,7 +16,8 @@ describe 'Ascent::ApplicationHelper', type: :helper do
       root = create :ascent_node, :root
       level1 = create :ascent_node, parent: root
       level2 = create :ascent_node, parent: level1
-      expect(breadcrumbs(level2, 'node_path', Ascent::Admin::Engine)).to have_selector('a', count: 3)
+      engine = Ascent::Admin::Engine
+      expect(breadcrumbs(level2, 'node_path', engine)).to have_selector('a', count: 3)
     end
   end
 end
