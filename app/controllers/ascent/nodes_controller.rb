@@ -1,5 +1,5 @@
 module Ascent
-  class NodesController
+  class NodesController < Ascent::ApplicationController
     def show
       @node = Ascent::Node.find params[:id]
     end
