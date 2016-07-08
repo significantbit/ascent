@@ -20,9 +20,9 @@ Ascent::Engine.routes.draw do
               as: n.controller_class.to_s.singularize
         end
       elsif n.root?
-        get '#{n.url}', to: 'nodes#show', defaults: { id: n.id }, as: :root
+        get "#{n.url}", to: 'nodes#show', defaults: { id: n.id }, as: :root
       else
-        get '#{n.url}', to: 'nodes#show', defaults: { id: n.id }
+        get "#{n.url}", to: 'nodes#show', defaults: { id: n.id }
       end
     end
   end
