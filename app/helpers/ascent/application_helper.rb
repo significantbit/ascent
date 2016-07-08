@@ -13,6 +13,7 @@ module Ascent
       list.html_safe
     end
 
+    # rubocop:disable Style/RescueModifier
     def logout_path
       if defined?(Devise)
         scope = Devise::Mapping.find_scope!(_current_user) rescue false

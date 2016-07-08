@@ -85,7 +85,6 @@ module Ascent
       end
     end
 
-
     reset
   end
 end
