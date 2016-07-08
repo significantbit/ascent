@@ -53,6 +53,10 @@ module Ascent
         end
       end
 
+      def lchomp(base, arg)
+        base.to_s.reverse.chomp(arg.to_s.reverse).reverse
+      end
+
       def included_blocks
         @system_models ||= # memoization for tests
           ([Rails.application]).flat_map do |app|
@@ -81,11 +85,7 @@ module Ascent
       end
     end
 
-    private 
 
-    def lchomp(base, arg)
-      base.to_s.reverse.chomp(arg.to_s.reverse).reverse
-    end
     reset
   end
 end
