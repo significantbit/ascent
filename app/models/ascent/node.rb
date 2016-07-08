@@ -28,7 +28,10 @@ module Ascent
     end
 
     ascent do
-      exclude [:slug, :url, :sort_order]
+      exclude :slug, :url, :sort_order
+      collection_scope :parent_id, Proc.new { |scope, obj |
+        scope.where.not(id: [obj.id]) if obj.present?
+      }
     end
   end
 end

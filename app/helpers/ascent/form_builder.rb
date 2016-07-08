@@ -26,11 +26,12 @@ module Ascent
 
     def input_field(field)
       if @object.class.reflect_on_association(field.remove('_id'))
+        collection = Ascent.config(@object.class).collection(field, @object)
         return (@template.render(get_partial('association'),
                                  form: self,
                                  object: @object,
                                  field: field,
-                                 collection: @object.class.all))
+                                 collection_scope: collection))
       else
         type = @object.type_for_attribute(field).type
         return (@template.render get_partial(type), form: self, field: field)
