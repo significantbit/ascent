@@ -12,5 +12,20 @@ module Ascent
       end
       list.html_safe
     end
+
+    # rubocop:disable Style/RescueModifier
+    def logout_path
+      if defined?(Devise)
+        scope = Devise::Mapping.find_scope!(_current_user) rescue false
+        main_app.send("destroy_#{scope}_session_path") rescue false
+      else
+        main_app.logout_path if main_app.respond_to?(:logout_path)
+      end
+    end
+
+    def logout_method
+      return [Devise.sign_out_via].flatten.first if defined?(Devise)
+      :delete
+    end
   end
 end
