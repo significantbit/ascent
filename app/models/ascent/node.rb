@@ -11,6 +11,8 @@ module Ascent
     after_validation :create_slug
     after_save :create_url
 
+    validates :name, presence: true
+
     scope :published, -> { where(published: true) }
 
     def create_slug
@@ -25,8 +27,11 @@ module Ascent
       gurl
     end
 
-    def excluded_fields
-      [:slug, :url, :sort_order]
+    ascent do
+      exclude :slug, :url, :sort_order
+      collection_scope :parent_id, proc { |scope, obj|
+        scope.where.not(id: [obj.id]) if obj.present?
+      }
     end
   end
 end

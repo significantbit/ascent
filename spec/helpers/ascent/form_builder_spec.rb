@@ -17,21 +17,13 @@ describe 'Ascent::FormBuilder', type: :helper do
     it 'does not include excluded fields' do
       module Ascent
         class Node
-          def excluded_fields
-            [:slug]
+          ascent do
+            exclude :slug
           end
         end
       end
       build_form
       expect(@builder.generate).to_not include('slug')
-    end
-
-    after(:each) do
-      module Ascent
-        class Node
-          undef_method :excluded_fields if respond_to? :excluded_fields
-        end
-      end
     end
   end
 end

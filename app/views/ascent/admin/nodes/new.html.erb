@@ -1,9 +1,7 @@
-<%= content_for :title, "#{@object.name} - Nodes - Admin" %>
-<%= content_for :header_title, "Edit- #{@object.name}" %>
+<%= content_for :title, "New - Nodes - Admin" %>
+<%= content_for :header_title, t('ascent.admin.node.new') %>
 
 <div class="admin-well">
-  <h2><%= t('ascent.admin.node.new') %></h2>
-
   <%= ascent_form_for @object, url: ascent_admin.nodes_path, html: { method: "post", multipart: true } do |form| %>
     <%= form.generate %>
   <% end %>

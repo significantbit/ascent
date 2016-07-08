@@ -60,8 +60,7 @@ describe Ascent::Admin::NodesController, type: :controller do
     end
 
     it 'render #edit when it can\'t update' do
-      # We can't update a root due to validation
-      root = create :ascent_node, :root
+      root = create :ascent_node, :root, name: nil
       post :update, params: { id: root.id }
       expect(response).to render_template :edit
     end
@@ -82,13 +81,12 @@ describe Ascent::Admin::NodesController, type: :controller do
   describe 'POST #create' do
     it 'redirects to node url when it can create' do
       root = create :ascent_node, :root
-      post :create, node: attributes_for(:ascent_node, parent_id: root.id)
+      post :create, params: { node: attributes_for(:ascent_node, parent_id: root.id) }
       expect(response).to redirect_to("/admin/nodes/#{assigns(:object).id}")
     end
 
     it 'render #edit when it can\'t create' do
-      # We can't create a new root due to validation
-      post :create, node: attributes_for(:ascent_node, :root)
+      post :create, params: { node: attributes_for(:ascent_node, :root, name: nil) }
       expect(response).to render_template :new
     end
   end
