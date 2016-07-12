@@ -7,7 +7,7 @@
 
 Ascent is a highly customizable CMS created by and for developers.
 
-## What is Ascent and why is it better then other CMS?
+## What is Ascent and why is it better than other CMS?
 Ascent isn't made to be a plug and play CMS for Ruby on Rails. It is a basic wrapper to create a custom CMS for your needs! 
 If you want to create a complete webpage in just a day Ascent may not suite your needs, 
 but it may if you want to be able to completly customize all content on the website but don't want to create the hard parts it may just be perfect for you!.
